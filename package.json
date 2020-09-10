@@ -1,0 +1,21 @@
+{
+  "name": "mdev",
+  "version": "1.0.0",
+  "description": "",
+  "private": false,
+  "scripts": {
+    "build": "tsc -p .",
+    "postbuild": "cpy '**/*' '!**/*.ts' ../lib/ --cwd=packages/ --no-overwrite --parents"
+  },
+  "directories": {
+    "example": "sample",
+    "lib": "packages"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "cpy-cli": "^3.1.1",
+    "typescript": "^3.8.3"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --kill-others \"yarn watch\" \"yarn schema:watch\"",
+    "debug": "node --inspect --require ts-node/register sample/entrypoints/server.ts",
+    "debug:brk": "node --inspect-brk --require ts-node/register sample/entrypoints/server.ts",
+    "lint": "tslint -c tslint.json --project .",
+    "watch": "nodemon",
+    "start": "node --require ts-node/register sample/entrypoints/server.ts",
+    "schema:build": "ts-node -T scripts/buildSchema.ts",
+    "schema:watch": "nodemon -w \\\"sample/modules/\\\" -e \\\".module.ts\\\" --exec \\\"yarn schema:build\\\"",
+    "build": "yarn schema:build && tsc && copyfiles -u 1 sample/**/*.graphql dist/",
+    "start:prod": "node dist/entrypoints/server.js",
+    "typeorm": "cd sample && ts-node ../node_modules/typeorm/cli.js"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}

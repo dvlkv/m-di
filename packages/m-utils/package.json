@@ -1,0 +1,8 @@
+{
+  "name": "@mdev/utils",
+  "version": "1.0.0",
+
+  "dependencies": {
+    "rambda": "^5.6.2"
+  }
+}

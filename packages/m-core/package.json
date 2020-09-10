@@ -1,0 +1,10 @@
+{
+  "name": "@mdev/m-core",
+  "version": "1.0.0",
+
+  "dependencies": {
+    "graphql": "^14.0.2",
+    "graphql-tools": "^6.0.9",
+    "lodash.merge": "^4.6.2"
+  }
+}

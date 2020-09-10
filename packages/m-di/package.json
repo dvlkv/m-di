@@ -1,0 +1,10 @@
+{
+  "name": "@mdev/m-di",
+  "version": "1.0.0",
+
+  "dependencies": {
+    "graphql": "^14.0.2",
+    "graphql-tools": "^6.0.9",
+    "@mdev/utils": "1.0.0"
+  }
+}
