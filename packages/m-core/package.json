@@ -1,7 +1,6 @@
 {
-  "name": "@mdev/m-core",
+  "name": "@mrmld/m-core",
   "version": "1.0.0",
-
   "dependencies": {
     "graphql": "^14.0.2",
     "graphql-tools": "^6.0.9",

@@ -1,11 +1,11 @@
 {
-  "name": "mdev",
+  "name": "mrmld",
   "version": "1.0.0",
   "description": "",
-  "private": false,
+  "private": true,
   "scripts": {
     "build": "tsc -p .",
-    "postbuild": "cpy '**/*' '!**/*.ts' ../lib/ --cwd=packages/ --no-overwrite --parents"
+    "postbuild": "cpy '**/*' '!**/*.ts' ../lib/ --cwd=packages/ --overwrite --parents"
   },
   "directories": {
     "example": "sample",
