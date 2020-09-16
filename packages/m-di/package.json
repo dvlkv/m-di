@@ -1,9 +1,7 @@
 {
   "name": "@mrmld/m-di",
-  "version": "1.0.0",
+  "version": "1.0.1-beta",
   "dependencies": {
-    "graphql": "^14.0.2",
-    "graphql-tools": "^6.0.9",
-    "@mrmld/m-utils": "1.0.0"
+    "@mrmld/m-utils": "1.0.1-beta"
   }
 }

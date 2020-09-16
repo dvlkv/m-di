@@ -1,5 +1,5 @@
 import { ServiceScope } from './index';
-import { makeId } from '../m-utils/misc';
+import { makeId } from '@mrmld/m-utils/misc';
 
 type ServiceConstructor<TApp, TService> = new (app?: TApp) => TService;
 type ServiceFactory<TApp, TService> = (app?: TApp) => TService;

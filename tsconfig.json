@@ -12,6 +12,7 @@
     "allowJs": true,
     "outDir": "lib",
     "esModuleInterop": true,
+    "declaration": true
   },
   "exclude": [
     "node_modules",

@@ -1,6 +1,6 @@
 import ServiceDescriptor from './ServiceDescriptor';
 import { ServiceScope } from './index';
-import { colorful } from '../m-utils/console';
+import { colorful } from '@mrmld/m-utils/console';
 import { ServiceCollection } from './ServiceCollection';
 
 class ServiceProvider<TApp = any> {
@@ -11,10 +11,10 @@ class ServiceProvider<TApp = any> {
   public constructor(public readonly services: ServiceCollection<TApp>) {
   }
 
-  public resolveService(prop: string): any {
-    const descriptor: ServiceDescriptor<TApp, any> = this.services.getDescriptor(prop);
+  public get<T>(name: string): T {
+    const descriptor: ServiceDescriptor<TApp, any> = this.services.getDescriptor(name);
 
-    const proxy = this.getServices(prop);
+    const proxy = this.getServices(name);
     const activate = () => descriptor.activate(proxy);
 
     if (descriptor.scope === ServiceScope.TRANSIENT) {
@@ -26,7 +26,7 @@ class ServiceProvider<TApp = any> {
       return this.rootProvider.instances[descriptor.id];
     } else if (descriptor.scope === ServiceScope.SCOPED) {
       if (this === this.rootProvider) {
-        console.warn(`${colorful([1, 33])('[Warning]')} Scoped service "${prop}" resolved from root provider`);
+        console.warn(`${colorful([1, 33])('[Warning]')} Scoped service "${name}" resolved from root provider`);
       }
 
       if (!this.instances[descriptor.id]) {
@@ -42,7 +42,7 @@ class ServiceProvider<TApp = any> {
     }
 
     let obj: any = {};
-    const resolveService = this.resolveService.bind(this);
+    const resolveService = this.get.bind(this);
     let props: any = {};
     for (let field of this.services.getNames()) {
       if (field === caller) {
