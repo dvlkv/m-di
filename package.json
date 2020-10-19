@@ -5,7 +5,10 @@
   "private": true,
   "scripts": {
     "build": "tsc -p .",
-    "postbuild": "cpy '**/*' '!**/*.ts' ../lib/ --cwd=packages/ --overwrite --parents"
+    "postbuild": "cpy '**/*' '!**/*.ts' ../lib/ --cwd=packages/ --overwrite --parents",
+    "publish-di": "cd lib/m-di && npm publish --access public",
+    "publish-core": "cd lib/m-core && npm publish --access public",
+    "publish-utils": "cd lib/m-utils && npm publish --access public"
   },
   "directories": {
     "example": "sample",

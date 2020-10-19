@@ -6,13 +6,16 @@ import { ServiceCollection } from './ServiceCollection';
 class ServiceProvider<TApp = any> {
   protected readonly rootProvider: ServiceProvider<TApp> = this;
   private readonly instances: { [id: string]: any } = {};
-  private appInstance: TApp;
+  private appInstance: TApp & { get: <T>(name: string) => T };
 
   public constructor(public readonly services: ServiceCollection<TApp>) {
   }
 
   public get<T>(name: string): T {
     const descriptor: ServiceDescriptor<TApp, any> = this.services.getDescriptor(name);
+    if (!descriptor) {
+      throw new Error(`Service "${name}" is not defined`);
+    }
 
     const proxy = this.getServices(name);
     const activate = () => descriptor.activate(proxy);
@@ -36,7 +39,7 @@ class ServiceProvider<TApp = any> {
     }
   }
 
-  public getServices(caller?: string): TApp {
+  public getServices(caller?: string): TApp & { get: <T>(name: string) => T } {
     if (this.appInstance) {
       return this.appInstance;
     }
@@ -52,7 +55,12 @@ class ServiceProvider<TApp = any> {
         get: () => resolveService(field),
       };
     }
+
+    // Define services as properties with getters
     Object.defineProperties(obj, props);
+
+    // Define public "get" method
+    obj.get = (name: string) => resolveService(name);
 
     this.appInstance = obj;
 

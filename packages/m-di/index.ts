@@ -7,4 +7,7 @@ enum ServiceScope {
   TRANSIENT = 'TRANSIENT',
 }
 
-export { ServiceCollection, ServiceScope, ServiceProvider };
+type ServicesExtension<T extends () => ServiceCollection<any>>
+  = ReturnType<T> extends ServiceCollection<infer TServices> ? TServices : never
+
+export { ServiceCollection, ServiceScope, ServiceProvider, ServicesExtension };
