@@ -1,12 +1,13 @@
 {
   "name": "@mrmld/m-di",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "license": "MIT",
   "description": "Simple zero-dependency dependency injection library, fully typed with TypeScript",
-  "main": "dist/index.d.ts",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "prepack": "yarn build"
   },
   "directories": {
     "example": "sample",
