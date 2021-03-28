@@ -6,6 +6,12 @@
 - Global public services should be exposed to single typescript type
 - Private services should be hidden and can be typed too
 
+## Installation
+Just install package from npm
+```shell
+yarn add @mrmld/m-di
+```
+
 ## Usage
 ### Basic usage
 ```typescript
