@@ -2,5 +2,5 @@
 .DS_Store
 yarn-error.log
 .idea/
-lib/
+dist/
 node_modules/

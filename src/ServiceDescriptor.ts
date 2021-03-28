@@ -1,7 +1,7 @@
 import { ServiceScope } from './index';
 import { makeId } from './utils/makeId';
 
-type ServiceConstructor<TApp, TService> = new (app?: TApp) => TService;
+type ServiceConstructor<TApp, TService> = new (app?: any) => TService;
 type ServiceFactory<TApp, TService> = (app?: TApp) => TService;
 type ServiceActivator<TApp, TService> = ServiceConstructor<TApp, TService> | ServiceFactory<TApp, TService>;
 

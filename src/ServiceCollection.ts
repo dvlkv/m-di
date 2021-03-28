@@ -9,7 +9,7 @@ class ServiceBuilder<Data, Key extends string> {
   constructor(private collection: ServiceCollection<Data>, private key: Key) {}
 
   public bind<TService>(
-    type: (new (app?: Data) => TService) |
+    type: (new (app?: any) => TService) |
                 ((app?: Data) => TService),
     scope: ServiceScope = ServiceScope.SINGLETON,
   ) {
@@ -65,4 +65,8 @@ export class ServiceCollection<Data = {}> {
   public contains(key: string) {
     return this.services.has(key);
   }
+}
+
+export function createServices(): ServiceCollection {
+  return new ServiceCollection()
 }

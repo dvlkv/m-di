@@ -1,6 +1,6 @@
 {
   "name": "@mrmld/m-di",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "license": "MIT",
   "description": "Simple zero-dependency dependency injection library, fully typed with TypeScript",
   "main": "dist/index.js",
