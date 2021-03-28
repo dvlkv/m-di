@@ -1,24 +1,19 @@
 {
-  "name": "mrmld",
-  "version": "1.0.0",
-  "description": "",
-  "private": true,
+  "name": "@mrmld/m-di",
+  "version": "1.0.3",
+  "license": "MIT",
+  "description": "Simple zero-dependency dependency injection library, fully typed with TypeScript",
+  "main": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p .",
-    "postbuild": "cpy '**/*' '!**/*.ts' ../lib/ --cwd=packages/ --overwrite --parents",
-    "publish-di": "cd lib/m-di && npm publish --access public",
-    "publish-core": "cd lib/m-core && npm publish --access public",
-    "publish-utils": "cd lib/m-utils && npm publish --access public"
+    "build": "tsc -p ."
   },
   "directories": {
     "example": "sample",
-    "lib": "packages"
+    "lib": "src"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "devDependencies": {
-    "cpy-cli": "^3.1.1",
+    "@types/node": "^14.14.37",
     "typescript": "^3.8.3"
   }
 }

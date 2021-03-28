@@ -1,5 +1,5 @@
-import { ServiceProvider } from '../packages/m-di';
-import { ServiceCollection } from '../packages/m-di';
+import { ServiceProvider } from '../src';
+import { ServiceCollection } from '../src';
 
 const serviceCollection = new ServiceCollection();
 

@@ -1,18 +1,17 @@
-import ServiceDescriptor from './ServiceDescriptor';
 import { ServiceScope } from './index';
-import { colorful } from '@mrmld/m-utils/console';
 import { ServiceCollection } from './ServiceCollection';
+import { logger } from './Logger';
 
 class ServiceProvider<TApp = any> {
   protected readonly rootProvider: ServiceProvider<TApp> = this;
   private readonly instances: { [id: string]: any } = {};
-  private appInstance: TApp & { get: <T>(name: string) => T };
+  private appInstance: TApp & { get: <T>(name: string) => T } | undefined;
 
   public constructor(public readonly services: ServiceCollection<TApp>) {
   }
 
   public get<T>(name: string): T {
-    const descriptor: ServiceDescriptor<TApp, any> = this.services.getDescriptor(name);
+    const descriptor = this.services.getDescriptor(name);
     if (!descriptor) {
       throw new Error(`Service "${name}" is not defined`);
     }
@@ -29,13 +28,15 @@ class ServiceProvider<TApp = any> {
       return this.rootProvider.instances[descriptor.id];
     } else if (descriptor.scope === ServiceScope.SCOPED) {
       if (this === this.rootProvider) {
-        console.warn(`${colorful([1, 33])('[Warning]')} Scoped service "${name}" resolved from root provider`);
+        logger.warn(`Scoped service "${name}" resolved from root provider`);
       }
 
       if (!this.instances[descriptor.id]) {
         this.instances[descriptor.id] = activate();
       }
       return this.instances[descriptor.id];
+    } else {
+      throw new Error(`Undefined scope for "${name}" service`)
     }
   }
 
@@ -64,7 +65,7 @@ class ServiceProvider<TApp = any> {
 
     this.appInstance = obj;
 
-    return this.appInstance;
+    return this.appInstance!;
   }
 
   public createScope(): ServiceProvider<TApp> {
