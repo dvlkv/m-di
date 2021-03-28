@@ -28,11 +28,11 @@ class IntFactory implements NumberFactory {
  const serviceCollection = createServices()
   .service('Numbers').bind<NumberFactory>(IntFactory)
 
-const rootProvider = new ServiceProvider(serviceCollection);
-export const Services = rootProvider.getServices();
+const rootProvider = new ServiceProvider(serviceCollection)
+export const Services = rootProvider.getServices()
 console.log(Services.Counter) // Should be a singleton instance of CounterService
 
-const scopedProvider = rootProvider.createScope();
+const scopedProvider = rootProvider.createScope()
 ```
 
 ### Service lifetimes
